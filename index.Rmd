@@ -1,0 +1,132 @@
+---
+title: "Deck Day"
+output: 
+  html_notebook:
+    code_folding: show
+date: "2024-05-08"
+---
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+text <- 
+"title: 'Deck Day' 
+output: 
+  html_notebook: 
+    code_folding: show 
+date: '2024-05-08'"
+text
+```
+
+---
+
+##### Customized Table 
+
+```{r, echo=FALSE}
+# Create data for the first table
+data1 <- matrix(c("A", "B", "C", "D", "E",
+                  "F", "G", "H", "I", "J",
+                  "K", "L", "M", "N", "O"), 
+                nrow = 5, ncol = 3, byrow = TRUE)
+colnames(data1) <- c("Col1", "Col2", "Col3")
+rownames(data1) <- c("Row1", "Row2", "Row3", "Row4", "Row5")
+
+# Create data for the second table
+data2 <- matrix(c("A", "C", "D", "E", "F",
+                  "G", "H", "I", "J", "K",
+                  "L", "M", "N", "O", "P"), 
+                nrow = 5, ncol = 3, byrow = TRUE)
+colnames(data2) <- c("Col1", "Col2", "Col3")
+rownames(data2) <- c("Row1", "Row2", "Row3", "Row4", "Row5")
+
+knitr::kable(data1, caption = "First Table")
+knitr::kable(data2, caption = "Second Table")
+```
+
+```{r}
+# Comparing three tables
+different_entries <- (data1 != data2) 
+
+# Showing the differences
+differences <- cbind(data.frame(different_entries))
+colnames(differences) <- c()
+
+# Displaying the differences
+print(differences)
+```
+
+```{r}
+# Create data for the second table
+data3 <- matrix(c("A", "C", "D", "E", "F",
+                  "G", "H", "I", "J", "K",
+                  "L", "M", "N", "O", "P"), 
+                nrow = 5, ncol = 3, byrow = TRUE)
+colnames(data3) <- c("Col1", "Col2", "Col3")
+rownames(data3) <- c("Row1", "Row2", "Row3", "Row4", "Row5")
+
+knitr::kable(data3, caption = "Third Table")
+```
+
+```{r}
+# Comparing three tables
+different_entries <- (data1 != data2) | (data1 != data3) | (data2 != data3) 
+
+# Showing the differences
+differences <- cbind(data.frame(different_entries))
+colnames(differences) <- c()
+
+# Displaying the differences
+print(differences)
+```
+
+<br>
+<hr>
+
+##### Series Table
+
+```{r, echo=FALSE}
+# Creating the first table
+table1 <- matrix(1:15, nrow = 5, ncol = 3, byrow = TRUE)
+colnames(table1) <- c("Column1", "Column2", "Column3")
+rownames(table1) <- c("Row1", "Row2", "Row3", "Row4", "Row5")
+
+# Creating the second table
+table2 <- matrix(1:-13, nrow = 5, ncol = 3, byrow = TRUE)
+colnames(table2) <- c("Column1", "Column2", "Column3")
+rownames(table2) <- c("Row1", "Row2", "Row3", "Row4", "Row5")
+
+knitr::kable(table1, caption = "This is the first table")
+knitr::kable(table2, caption = "This is the second table")
+```
+
+```{r}
+# Comparing two tables
+different_entries <- table1 != table2
+
+# Showing the differences
+differences <- cbind(data.frame(different_entries))
+colnames(differences) <- c()
+
+# Displaying the differences
+print(differences)
+```
+```{r}
+# Creating the third table
+table3 <- matrix(1:15, nrow = 5, ncol = 3, byrow = TRUE)
+colnames(table3) <- c("Column1", "Column2", "Column3")
+rownames(table3) <- c("Row1", "Row2", "Row3", "Row4", "Row5")
+```
+
+```{r}
+knitr::kable(table3, caption = "This is the third table")
+```
+
+```{r}
+# Comparing three tables
+different_entries <- (table1 != table2) | (table1 != table3) | (table2 != table3)
+
+# Showing the differences
+differences <- cbind(data.frame(different_entries))
+colnames(differences) <- c()
+
+# Displaying the differences
+print(differences)
+```
